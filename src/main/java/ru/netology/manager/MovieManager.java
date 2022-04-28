@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.netology.domain.Movie;
 
+import javax.swing.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -43,13 +45,18 @@ public class MovieManager {
         } else {
             resultLength = limitManager;
         }
-        Movie[] result = new Movie[resultLength];
-        for (int i = 0; i < result.length; i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
-            // заполняем result из массива что лежит в поле
-            // в обратном порядке
+        if ( items.length < limitManager ) {
+            resultLength = items.length;
         }
-        return result;
+        Movie[] result = new Movie[resultLength];
+
+            for (int i = 0; i < result.length; i++) {
+                int index = items.length - i - 1;
+                result[i] = items[index];
+                // заполняем result из массива что лежит в поле
+                // в обратном порядке
+            }
+            return result;
+
     }
 }
